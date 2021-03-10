@@ -22,22 +22,6 @@ function App() {
         });
     }, [setImages]);
 
-    /*
-    const getFullImage = (e) => {
-        setIsModalVisible(true)
-        let url = 'https://boiling-refuge-66454.herokuapp.com/images/' + e.target.id;
-        axios.get(url).then(({ data }) => {
-            console.log(data);
-            setFullImage(data)
-        })
-    }
-
-    useEffect(() => {
-        setIsModalVisible(true)
-    },[fullImageURL])
-*/
-
-
     const getFullImage = (e) => {
         setIsModalVisible(true)
         let url = 'https://boiling-refuge-66454.herokuapp.com/images/' + e.target.id;
@@ -45,7 +29,8 @@ function App() {
 
     }
 
-    const closeModal = () => {
+    const closeModal = (e) => {
+        if (e.target.className !== 'modal-screen' && e.target.className !== 'close-btn') { return }
         setIsModalVisible(false)
     }
 
@@ -59,37 +44,8 @@ function App() {
                   url={fullImageURL}
               />
           }
-          {/*
-          <div className={'modal-screen ' + (isModalVisible && 'visible')}>
-            <div className='modal-container'>
-                <span className='close-btn'>
-
-                </span>
-                <div className='modal-container--img-wrapper'>
-                    <div className='modal-container--img-wrapper__img'>
-
-                    </div>
-                    <div className='modal-container--img-wrapper__comments'>
-                        <div className='comment'>
-                            <p className='comment--date'>18.12.2019</p>
-                            <p className='comment--text'>Отличное фото</p>
-                        </div>
-                        <div className='comment'>
-                            <p className='comment--date'>18.12.2019</p>
-                            <p className='comment--text'>Я тут был, очень понравилось</p>
-                        </div>
-                    </div>
-                </div>
-                <div className='modal-container--input-group'>
-                    <input name='name' className='modal-container--input-group__input-field browser-default' type='text' placeholder='Ваше имя'/>
-                    <input name='comment' className='modal-container--input-group__input-field browser-default' type='text' placeholder='Ваш комментарий'/>
-                    <button type='submit' className='modal-container--input-group__add-comm-btn'>Оставить комментарий</button>
-                </div>
-            </div>
-          </div>
-          */}
             <div className='container main'>
-                <div className='row main--heading' onClick={() => console.log(fullImageURL)}>
+                <div className='row main--heading'>
                     TEST APP
                 </div>
                 <div className='row main--img-wrapper'>

@@ -8,10 +8,9 @@ const area = 'fullImage';
 
 const Modal = ({isVisible,closeModal,url}) => {
 
-    const [fullImage,setFullImage] = useState({})
+    const [fullImage,setFullImage] = useState(null)
     const { promiseInProgress } = usePromiseTracker({ area })
 
-    useEffect(() => {console.log(isVisible,closeModal,url)},[])
 
     useEffect(() => {
         trackPromise(axios.get(url), area).then(({ data }) => {
@@ -19,21 +18,15 @@ const Modal = ({isVisible,closeModal,url}) => {
         });
     }, [setFullImage]);
 
-/*
-    if (!isVisible) {
-        return null;
-    }
- */
-
     return (
-    <div className='modal-screen'>
+    <div className='modal-screen' onClick={closeModal}>
         <div className='modal-container'>
             <span className='close-btn' onClick={closeModal}>
 
             </span>
             {promiseInProgress
                 ? <LoadingSpinner/>
-                : <ModalContent data={fullImage}/>
+                : fullImage && <ModalContent data={fullImage}/>
             }
         </div>
     </div>
