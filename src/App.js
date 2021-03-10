@@ -39,7 +39,6 @@ function App() {
           {!isModalVisible ?
               null :
               <Modal
-                  isVisible={isModalVisible}
                   closeModal={closeModal}
                   url={fullImageURL}
               />

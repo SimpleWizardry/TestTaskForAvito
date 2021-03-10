@@ -6,7 +6,7 @@ import ModalContent from './ModalContent'
 
 const area = 'fullImage';
 
-const Modal = ({isVisible,closeModal,url}) => {
+const Modal = ({closeModal,url}) => {
 
     const [fullImage,setFullImage] = useState(null)
     const { promiseInProgress } = usePromiseTracker({ area })
@@ -15,8 +15,9 @@ const Modal = ({isVisible,closeModal,url}) => {
     useEffect(() => {
         trackPromise(axios.get(url), area).then(({ data }) => {
             setFullImage(data);
+            console.log('request')
         });
-    }, [setFullImage]);
+    }, [setFullImage,url]);
 
     return (
     <div className='modal-screen' onClick={closeModal}>

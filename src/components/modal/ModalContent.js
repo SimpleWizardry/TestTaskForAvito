@@ -1,9 +1,7 @@
-import React,{useReducer} from 'react';
+import React,{useReducer, memo} from 'react';
 import axios from "axios";
 
 const ModalContent = ({data}) => {
-console.log(data)
-
     const [inputValues, setInputValues] = useReducer((state, newState) => ({ ...state, ...newState }),
         {name: '', comment: ''}
     );
@@ -68,4 +66,4 @@ console.log(data)
     )
 }
 
-export default ModalContent;
+export default memo(ModalContent);
